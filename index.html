@@ -1,474 +1,127 @@
-<include file="Public:head"/>
-<link href="{viicms::RES}/css/text_index.css" rel="stylesheet">
-<link rel="stylesheet" href="{viicms::STATICS}/css/plugins/bootstrap-datetimepicker.min.css" />
-<link rel="stylesheet" type="text/css" href="{viicms::RES}/css/zTreeStyle/zTreeStyle.css">
-<link href="{viicms::RES}/css/weixinad-add.css" rel="stylesheet">
-<style type="text/css">
-    .form-div { width: 694px; }
-    .form-horizontal { margin-top: 20px; }
-    textarea.px { outline: none; padding: 8px; background-image: none; border: 1px solid #ccdbeb; border-radius: 2px 2px 0 0; background-color: #e3edf6; color: #7390aa; }
-    .face-wrap { height: 33px; line-height: 33px; border: 1px solid #d8dce0; border-top: none; border-radius: 0 0 2px 2px; }
-    .limit { float: right; padding-right: 10px; color: #6a9ec5; font-size: 14px; }
-    .btn.btn-primary.fileinput-button { margin:  0 0 0 16px; }
-    #wl_wrap { display: none; }
-    </style>
-    <style type="text/css">
-    .cardbutton {
-    border: 1px groove;
-    border-radius: 10px 10px 1px 1px;
-    padding: 3px 20px;
-    margin-left: -5px;
-    }
-    .cardarea {
-    border: 1px groove;
-    margin-top: -1px;
-    margin-left: -5px;
-    }
-
-    /*add by wechat Alliance*/
-    .form-horizontal .control-label{
-        padding-top: 0px;
-    }
-    .addform{
-        width: 52%;
-        display: inline-block;
-        margin: 0 0 16px 20px;
-    }
-    #MbindingBox{
-        position: relative;
-        top: -306px;
-        left: 62px;
-        width: 90%;
-    }
-    .box.table-box {
-        background-color: #DFEBF7;
-        margin-right: 10px;
-    }
-    .btn-sm, .btn-xs {
-      padding: 8px 9px;
-      font-size: 18px;
-      line-height: 1.5;
-      border-radius: 20px;
-      width: 36px;
-      height: 36px;
-    }
-</style>
-<script type="text/javascript" src="{viicms::STATICS}/js/zTreeJs/jquery.ztree.core-3.5.js"></script>
-<script type="text/javascript" src="{viicms::STATICS}/js/zTreeJs/jquery.ztree.excheck-3.5.js"></script>
-<script src="{viicms::STATICS}/js/dquery.js"></script>
-<script src="{viicms::STATICS}/js/bootstrap-datetimepicker.min.js"></script>
-<script src="{viicms::STATICS}/js/bootstrap-datetimepicker.zh-CN.js"></script>
-<script src="{viicms::STATICS}/js/bootstrap-paginator.js"></script>
-<script src="{viicms::RES}/js/text_index.js"></script>
-<script type="text/javascript" src="{viicms::RES}/js/weixinad-edit.js"></script>
-<script type="text/javascript">
-    var NOW_PAGE = 'edit',
-        targetingDataAction = '',
-        ajaxCreativesAction = '',
-        ajaxValidateCampaignNameAction = '';
-</script> 
-<script type="text/javascript">
-    $(function(){
-      var $count = $('.count');
-      $count.text(200-parseInt($('#tishi2').val().length));
-      $('#tishi2').bind('keyup',function(e){
-        $count.text(200-parseInt($('#tishi2').val().length));
-      });
-      $('.face ul li ul li').bind('click',function(e){
-          $count.text(200-parseInt($('#tishi2').val().length));
-      });
-    
-    //format当前日期
-      //var $nowTimeString = dquery(new Date()).format('yyyy-mm-dd HH:MM');
-      var $nowTimeString = dquery(new Date()).format('yyyy-mm-dd');
-      // 初始化时间控件
-      $("#startdate").datetimepicker({
-        language:'zh-CN',
-        //format: 'yyyy-mm-dd hh:ii',
-        format: 'yyyy-mm-dd',
-        minView: 2,
-        autoclose: 'true',
-        startDate: $nowTimeString
-      }).on('changeDate', function(ev){
-        $('#enddate').datetimepicker('setStartDate', $("#startdate").val());
-      });
-      $("#enddate").datetimepicker({
-        language:'zh-CN',
-        format: 'yyyy-mm-dd',
-        minView: 2,
-        autoclose: 'true',
-        startDate: $nowTimeString
-      }).on('changeDate', function(ev){
-        $('#startdate').datetimepicker('setEndDate', $("#enddate").val());
-      });
-
-    });
-</script>
-
-<div class="content">
-    <form id="basicBox" class="form-horizontal" method="post" action="" target="_top" enctype="multipart/form-data">
-
-        <!-- <input type="hidden" name="ID" value="{viicms:$card.ID}" /> -->
-        <div class="msgWrap">
-        <div class="box">
-            <div class="box-header clearfix">
-                <h4 class="pull-left">活动基本信息</h4>
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="myApp" class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My AngularJS App</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bower-components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="app.css" />
+</head>
+<body>
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class="container-fluid nav-container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
             </div>
-            <div class="box-content">
-                <div class="form-div">
 
-                    <div class="form-group" style="margin-top:30px;">
-                        <label for="cp-name" class="col-sm-3 control-label"><span class="red">*</span> o2o广告活动名称：</label>
-                        <div class="col-sm-5" style="width:52%;">
-                        <input type="text" class="form-control" id="cardname" name="cp-name" value="{viicms:$record['name']}" placeholder="不能为空" minlength="1" maxlength="50"/>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="cp-description" class="col-sm-3 control-label">o2o广告活动说明：</label>
-                      <div class="col-sm-9">
-                        <div class="word-wrap">
-                          <textarea class="px" style="width:100%; height:174px;" id="tishi2" name="cp-description" maxlength="200" onkeyup="DivFollowingText2()">{viicms:$record['description']}</textarea>
-                          <div class="face-wrap">
-                            <span class="limit">还可以输入<span class="count">200</span>字</span>                  
-                          </div>
-                          <script type="text/javascript">
-                          function DivFollowingText2() {
-                            document.getElementById("tishi").innerHTML=document.getElementById("tishi2").value;
-                          }
-                          </script>
-                        </div>
-                        <span class="help-block"> </span>
-                      </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="time" class="col-sm-3 control-label"><span class="red">*</span>投放时间：</label>
-                        <div class="col-sm-9">
-                        <span style="vertical-align: top;">开始时间</span><input type="input" class="form-control addform" id="startdate" value="{viicms:$record['start_time']}" name="cp-start-time"><br/>
-                        <span style="vertical-align: top;">结束时间</span><input type="input" class="form-control addform" id="enddate" name="cp-end-time" value="{viicms:$record['end_time']}">
-                        </div>
-                    </div>
-
-                    <!-- <div class="form-group" style="margin-bottom:25px;">
-                        <label for="connection" class="col-sm-3 control-label"><span class="red">*</span>关联公众号：</label>
-                        <div class="col-sm-9">
-                            <select name="connection" class="form-control" style="display:inline-block; width:68%;"> 
-                                <option value="1">公众号1</option>
-                            </select>
-                            <a href="" class="green" style="margin-left:10px;">添加公众号</a>
-                        </div>
-                    </div> -->
-                    <div class="form-group">
-                      <div class="col-sm-12">
-                        <a href="javascript:history.go(-1);" class="btn btn-cancel pull-right">取 消</a>
-                        <button type="submit" name="button" class="btn btn-primary pull-right">保 存</button>
-                      </div>
-                    </div>
-
-                </div>
-            </div> <!-- content --> 
-        </div>
-        </div>
-    
-    </form>
-
-
-
-
-
-     <!-- 定向信息 -->
-        <div class="msgWrap">
-            <form class="form-horizontal" method="post" action="" target="_top" enctype="multipart/form-data">
-                <div class="box">
-                    <div class="box-header clearfix"><h4 class="pull-left">定向信息</h4></div>
-                    <div class="box-content">
-                        <ul class="nav nav-tabs">
-                            <li class="tabli active"><a href="#Hour-direct" data-toggle="tab">时段定向</a></li>
-                            <li class="tabli"><a href="#Geo-direct" data-toggle="tab">地域定向</a></li>
-                            <li class="tabli"><a href="#Publicnum-direct" data-toggle="tab">公众号定向</a></li>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="text-center">
+                    <li id="nav-logo">
+                        <a id="logo" href="" class="hidden-xs hidden-sm">Scotch</a>
+                        <a id="logo2" href="" class="hidden-xs hidden-md hidden-lg">
+                            <img src="images/jeremy.jpg" alt="jeremy.jpg" width="30" height="30">
+                        </a>
+                    </li>
+                    <li id="bar-talk-nav">
+                        <a href="http://scotch.io/bar-talk">
+                            <span class="glyphicon glyphicon-leaf hidden-xs hidden-sm"></span> HTML
+                        </a>
+                    </li>
+                    <li id="tutorials-nav">
+                        <a href="http://scotch.io/tutorials">
+                            <span class="glyphicon glyphicon-send hidden-xs hidden-sm"></span> CSS
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://scotch.io/series">
+                            <span class="glyphicon glyphicon-star-empty hidden-xs hidden-sm"></span> JavaScript
+                        </a>
+                        <ul>
+                            <a href="http://scotch.io/series">
+                                <span class="glyphicon glyphicon-star-empty hidden-xs hidden-sm"></span> JavaScript
+                            </a>
+                            <li><a href="">javascript</a></li>
+                            <li><a href="">jquery</a></li>
+                            <li><a href="">nodejs</a></li>
+                            <li><a href="">angualrJs</a></li>
                         </ul>
-                        <div class="tab-content">
-                            <!--时间定向start-->
-                            <div class="tab-pane fade active in" id="Hour-direct">
-                                <div class="direct-content-header">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-default active">无限制</button>
-                                        <button type="button" class="btn btn-default">自定义</button>
-                                    </div>
-                                </div>
-                                <div class="direct-content-body hide">
-                                    <div class="time-wrap clearfix">
-                                        <ul>
-                                            <li><input type="checkbox" class="chk-item" name="check_time" value="0" id="0"/>00:00-00:59</li>
-                                            <li><input type="checkbox" class="chk-item" name="check_time" value="1" id="1"/>01:00-01:59</li>
-                                            <li><input type="checkbox" class="chk-item" name="check_time" value="2" id="2"/>02:00-02:59</li>
-                                            <li><input type="checkbox" class="chk-item" name="check_time" value="3" id="3"/>03:00-03:59</li>
-                                            <li><input type="checkbox" class="chk-item" name="check_time" value="4" id="4"/>04:00-04:59</li>
-                                            <li><input type="checkbox" class="chk-item" name="check_time" value="5" id="5"/>05:00-05:59</li>
-                                            <li><input type="checkbox" class="chk-item" name="check_time" value="6" id="6"/>06:00-06:59</li>
-                                            <li><input type="checkbox" class="chk-item" name="check_time" value="7" id="7"/>07:00-07:59</li>
-                                            <li><input type="checkbox" class="chk-item" name="check_time" value="8" id="8"/>08:00-08:59</li>
-                                            <li><input type="checkbox" class="chk-item" name="check_time" value="9" id="9"/>09:00-09:59</li>
-                                            <li><input type="checkbox" class="chk-item" name="check_time" value="10" id="10"/>10:00-10:59</li>
-                                            <li><input type="checkbox" class="chk-item" name="check_time" value="11" id="11"/>11:00-11:59</li>
-                                            <li><input type="checkbox" class="chk-item" name="check_time" value="12" id="12"/>12:00-12:59</li>
-                                            <li><input type="checkbox" class="chk-item" name="check_time" value="13" id="13"/>13:00-13:59</li>
-                                            <li><input type="checkbox" class="chk-item" name="check_time" value="14" id="14"/>14:00-14:59</li>
-                                            <li><input type="checkbox" class="chk-item" name="check_time" value="15" id="15"/>15:00-15:59</li>
-                                            <li><input type="checkbox" class="chk-item" name="check_time" value="16" id="16"/>16:00-16:59</li>
-                                            <li><input type="checkbox" class="chk-item" name="check_time" value="17" id="17"/>17:00-17:59</li>
-                                            <li><input type="checkbox" class="chk-item" name="check_time" value="18" id="18"/>18:00-18:59</li>
-                                            <li><input type="checkbox" class="chk-item" name="check_time" value="19" id="19"/>19:00-19:59</li>
-                                            <li><input type="checkbox" class="chk-item" name="check_time" value="20" id="20"/>20:00-20:59</li>
-                                            <li><input type="checkbox" class="chk-item" name="check_time" value="21" id="21"/>21:00-21:59</li>
-                                            <li><input type="checkbox" class="chk-item" name="check_time" value="22" id="22"/>22:00-22:59</li>
-                                            <li><input type="checkbox" class="chk-item" name="check_time" value="23" id="23"/>23:00-23:59</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="nolimit-direct">
-                                    <p>全天候投放广告</p>
-                                </div>
-                            </div>
-                            <!--时间定向end-->
+                    </li>
+                    <li>
+                        <a href="http://scotch.io/quick-tips">
+                            <span class="glyphicon glyphicon-book hidden-xs hidden-sm"></span> Others
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://scotch.io/about">
+                            <span class="glyphicon glyphicon-user hidden-xs hidden-sm"></span> About
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
-                            <!--地域定向start-->
-                            <div class="tab-pane fade" id="Geo-direct">
-                                <div class="direct-content-header">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-default active">无限制</button>
-                                        <button type="button" class="btn btn-default">自定义</button>
-                                    </div>
-                                </div>
-                                <div class="direct-content-body hide clearfix">
-                                    <div class="box-left">
-                                        <ul id="Geo_tree" class="ztree"></ul>
-                                    </div>
-                                    <div class="box-center">
-                                        <span class="btn btn-primary add-one-some"><i class="glyphicon glyphicon-chevron-right icon-white"></i></span>
-                                    </div>
-                                    <div class="box-right">
-                                        <ul class="first-ul">
-                                            <span class="wrap-words">已选则的地域</span>
-                                            <span class="btn btn-primary remove-all">全部删除</span>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="nolimit-direct">
-                                    <p>不限制地域</p>
-                                </div>
-                            </div>
-                            <!--地域定向end-->
+            <div id="top-nav" class="hidden-xs hidden-sm">
+                <ul class="text-center">
+                    <li>
+                        <a class="a1" href="#"><span class="glyphicon glyphicon-heart-empty"></span></a>
+                    </li>
+                    <li>
+                        <a class="a2" href="#"><span class="glyphicon glyphicon-heart-empty"></span></a>
+                    </li>
+                    <li>
+                        <a class="a3" href="#"><span class="glyphicon glyphicon-heart-empty"></span></a>
+                    </li>
+                    <li>
+                        <a class="a4" href="#"><span class="glyphicon glyphicon-heart-empty"></span></a>
+                    </li>
 
-                            <!--公众号定向start-->
-                            <div class="tab-pane fade" id="Publicnum-direct">
-                                <div class="direct-content-header">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-default active">无限制</button>
-                                        <button type="button" class="btn btn-default">自定义</button>
-                                    </div>
-                                </div>
-                                <div class="direct-content-body hide">
-                                    <div class="time-wrap clearfix">
-                                        <ul>
-                                            <li><input type="checkbox" class="chk-item" name="check_qrcode" value="0"/>公众号1</li>
-                                            <li><input type="checkbox" class="chk-item" name="check_qrcode" value="1"/>公众号2</li>
-                                            <li><input type="checkbox" class="chk-item" name="check_qrcode" value="2"/>公众号3</li>
-                                            <li><input type="checkbox" class="chk-item" name="check_qrcode" value="3"/>公众号4</li>
-                                            <li><input type="checkbox" class="chk-item" name="check_qrcode" value="4"/>公众号5</li>
-                                            <li><input type="checkbox" class="chk-item" name="check_qrcode" value="5"/>公众号6</li>
-                                            <li><input type="checkbox" class="chk-item" name="check_qrcode" value="6"/>公众号7</li>
-                                            <li><input type="checkbox" class="chk-item" name="check_qrcode" value="7"/>公众号8</li>
-                                            <li><input type="checkbox" class="chk-item" name="check_qrcode" value="8"/>公众号9</li>
-                                            <li><input type="checkbox" class="chk-item" name="check_qrcode" value="9"/>公众号10</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="nolimit-direct">
-                                    <p>不限制公众号</p>
-                                </div>
-                            </div>
-                            <!--公众号定向end-->
-                        </div>
-                        
-                    </div>
-                </div>
-            </form>
+                    <li>
+                        <a class="a5" href="#"><span class="glyphicon glyphicon-heart-empty"></span></a>
+                    </li>
+                </ul>
+            </div>
+
+
+            <!-- <div id="" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div> -->
         </div>
-        <!-- 定向信息end -->
+    </nav>
 
-
-
-
-
-
-    <!-- 物料选择部分 -->
-    <div class="box table-box">
-      <div class="box-header clearfix">
-        <h4 class="pull-left">图文选择</h4>
-        <!-- <a href="" title="添加物料" class="btn btn-success pull-right">添加物料</a> -->
-        <button id="clickMbinding" class="btn btn-success pull-right" style="margin-right:10px;">绑定图文</button>
-      </div>
-      <div class="box-content">
-        <table class="table table-bordered table-striped table-condensed">
-            <thead>
-                <tr>
-                    <th width="">图文ID</th>
-                    <th width="">图文名称</th>
-                    <th width="">创建时间</th>
-                    <th width="">状态</th>
-                    <th width="">操作</th>
-                </tr>
-            </thead>
-            <tbody id="Mchoose">
-            <volist name="creatives" id="creative">
-            <tr>
-                <td>{viicms:$creative['id']}</td>
-                <td>{viicms:$creative['title']}</td>
-                <td>{viicms:$creative['createtime']|date="Y-m-d H:i:s",###}</td>
-                <td><eq name="creative.map_enable" value="1">启用<else />停用</eq></td>
-                <td>
-                    <eq name="creative.map_enable" value="1">
-                    <a type="button" href="{viicms::U('QrcodeAd/enablecreative',array('token'=>$token,'id'=>$creative['map_id'],'value'=>0,'campaign_id'=>$record['id']))}" class="btn btn-warning btn-sm" title="禁用"><i class="fa fa-times-circle"></i></a>
-                    <else/>
-                    <a type="button" href="{viicms::U('QrcodeAd/enablecreative',array('token'=>$token,'id'=>$creative['map_id'],'value'=>1,'campaign_id'=>$record['id']))}" class="btn btn-warning btn-sm" title="启用"><i class="fa fa-check-circle"></i></a>
-                    </eq>
-                    <a type="button" onclick="javascript:return confirm('删除操作不可恢复，请确认。')" href="{viicms::U('QrcodeAd/removecreative',array('token'=>$token,'id'=>$creative['map_id'],'campaign_id'=>$record['id']))}" class="del" title="删除"></a>
-                </td>
-            </tr>
-            </volist>
-
-            </tbody>
-        </table>
-      </div> <!-- context -->
-      <div class="box-footer clearfix">
-      </div>
-    </div>
-
-
-
-    <!-- 物料绑定部分 -->
-    <div id="MbindingBox" class="box table-box" style="display:none;"><!--  -->
-      <form action="{viicms::U('QrcodeAd/addmaterials',array('id'=>$record['id']))}" method="post">
-     <!-- <div class="box-header clearfix">
-        关键字：
-        <input type="text" id="searchKey" size="80" class="form-control" placeholder="物料名称" style="width: 220px; display: inline-block; margin-left: 12px;">
-        <button id="Msearch" class="btn btn-success">
-            <strong>搜索</strong>
-        </button>      
-      </div>--> 
-
-      <div class="box-content">
-        <table id="MbindingId" class="table table-bordered table-striped table-condensed">
-            <thead>
-                <tr>
-                    <th width="40px"><input type="checkbox" id="all" value="all"></th>
-                    <th>标题</th>
-                    <!-- <th>类型</th> -->
-                    <th>创建时间</th>
-                   <!--  <th>说明</th> -->
-                </tr>
-            </thead>
+    <div id="site_wrapper">
+        <div id="main">
             
-            <tbody id="Mbinding">
-                <volist name="materials" id="material">
-                <tr>
-                    <td><input type="checkbox" class="child" name="materials[]" value="{viicms:$material['id']}"></td>
-                    <td>{viicms:$material['title']}</td>
-                    <td>{viicms:$material['createtime']|date="Y-m-d H:i:s",###}</td>
-                </tr>
-                </volist>
-            </tbody>
-        </table>
-      </div> <!-- context -->
-      <div class="box-footer clearfix">
-        <button  type="submit" id="MbindingSave" class="btn btn-success" style="margin-right:10px;">确 定</button>
-        <button id="MbindingClose" class="btn btn-success" style="margin-right:10px;">取 消</button>
-        <div id="paginator" class="pagination">
+            <ul class="menu">
+                <li><a href="#/view1">view1</a></li>
+                <li><a href="#/view2">view2</a></li>
+            </ul>
+            <div ng-view></div>
+            <div>Angular seed app: v<span app-version></span></div>
+            
         </div>
-        <div class="pull-right num-perpage">
-            <span class="total">共<b id="total-page"></b>页<b id="total-num"></b>条记录</span>
-            <span>每页显示条数：</span>
-            <select id="perpage-num-select">
-                <option value="10">10</option>
-                <option value="20" selected="selected">20</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-            </select>
-        </div>
-      </div>
-      </form>
     </div>
 
-</div>
-
-<script type="text/javascript">
-    $(function(){       
-        //点击绑定物料才出现
-        $("#clickMbinding").click(function(event) {
-            /* Act on the event */
-            event.preventDefault();
-            $("#MbindingBox").show();
-        });
-       
-        //点击取消
-        $("#MbindingClose").click(function(event) {
-            /* Act on the event */
-            $("#MbindingBox").hide();
-        });
-        //搜索
-        $("#Msearch").click(function(event) {
-            /* Act on the event */
-            var searchKey=$("#searchKey").val();
-            $.ajax({
-                url: '/weixin-cms/tpl/user/default/common/fake/o2oTest.json',
-                type: 'POST',
-                dataType: 'json',
-                data: {searchKey: searchKey},
-                success: function(data){
-                    $("#Mbinding").empty();
-                    alert("222");
-                    var tdString = null,
-                    trString = null;
-                    for (var i = 0; i < data.sum; i++) {
-                    tdString = "<td width='40px'><input type='checkbox' class='child' value='"+data.result[i][0]+"'></td>\
-                    <td>"+data.result[i][1]+"</td>\
-                    <td>"+data.result[i][2]+"</td>";    
-                    trString += "<tr>"+tdString+"</tr>";
-                };
-                $("#Mbinding").append(trString);
-                }
-             });
-        });
-        //在物料绑定列表中，点击all下面所有checkbox全选
-        $("#all").click(function(event) {
-            if ( this.checked == true ) {
-                $.each( $(".child") , function(index, val) {
-                     $(".child")[index].checked = true;
-                });
-            }else{
-                $.each( $(".child") , function(index, val) {
-                     $(".child")[index].checked = false;
-                });
-            };
-        });
-
-        $("#Mbinding").delegate( $(".child"), 'click', function(event) {  
-            var signal = true;
-            $.each( $(".child") , function(index, val) {
-                if ( $(".child")[index].checked == false ) {
-                    signal = false;
-                };
-            });
-            if ( signal == true ) {
-                $("#all")[0].checked = true;
-            }else{
-                $("#all")[0].checked = false;
-            };
-        });
-
-    });
-</script>
-
-<include file="Public:footer"/>
+    
+    <script src="bower-components/jquery/dist/jquery.min.js"></script>
+    <script src="bower-components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="app-pro.js"></script>
+</body>
+</html>

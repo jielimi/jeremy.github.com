@@ -1,0 +1,115 @@
+/* app css stylesheet */
+body { background: #222 url(images/bg.png); background-attachment: fixed;padding: 0; margin: 0; color: #fff; font-family: "微软雅黑","宋体",arial;
+  -webkit-animation: animatedBackground 30s linear infinite;
+  -moz-animation: animatedBackground 30s linear infinite; }
+
+@-webkit-keyframes animatedBackground {
+  from { background-position: 0 0; }
+  to { background-position: 0 -798px; }
+}
+@-moz-keyframes animatedBackground {
+  from { background-position: 0 0; }
+  to { background-position: 0 -798px; }
+}
+ul,ol { list-style: none; padding: 0; margin: 0; }
+
+.container-fluid.nav-container { padding: 0; }
+.navbar-static-top { border: none; }
+/* all nav's href transition */
+.navbar { margin-bottom: 0; }
+.navbar ul li a {
+  transition: 0.5s ease all;
+  -moz-transition: 0.5s ease all;
+  -webkit-transition: 0.5s ease all; }
+
+/* style for top nav */
+.navbar #top-nav { float: right; }
+.navbar #top-nav ul { height: 50px; margin: 0; }
+.navbar #top-nav ul li { float: left; height: 100%; }
+.navbar #top-nav ul li a { display: block; height: 100%; padding: 14px 38px 0; font-size: 20px; color: #fff; }
+.a1 { background-color: #808080; }
+.a1:hover { background-color: #a6a6a6; }
+.a2 { background-color: #BBB; }
+.a2:hover { background-color: #CCC; }
+.a3 { background-color: #3971B6; }
+.a3:hover { background-color: #5A99E6; }
+.a4 { background-color: #A0D6E2; }
+.a4:hover { background-color: #00526e; }
+.a5 { background-color: #CE443E; }
+.a5:hover { background-color: #F74840; }
+
+/* ctyle for left side nav */
+@media (min-width: 992px) {
+  .navbar #navbar { background: #2A2A2A; position: fixed; height: 100% !important; width: 100px; z-index: 99999999999; }
+  .navbar #navbar>ul { padding: 0; }
+  .navbar #navbar a { color: #F1F1F1; display: block; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
+  .navbar #navbar a:hover { text-decoration: none; }
+  .navbar #navbar>ul>li>a { border-bottom: 1px solid #1B1B1B; padding: 23px 0; }
+  .navbar #navbar a#logo { background: #D98218; color: #333; padding-top: 0; padding-bottom: 0; height: 50px; line-height: 50px; border-bottom: none; }
+
+  /* second-level menu */
+  .navbar #navbar>ul>li>ul { display: none; width: 300px; height: 100%; background-color: #111; position: fixed; top: 0; left: 100px; padding-top: 100px;
+  -webkit-transition: display 4000ms cubic-bezier(.694,.0482,.335,1);
+  transition: display 4000ms cubic-bezier(.694,.0482,.335,1); }
+  .navbar #navbar>ul>li:hover ul { display: block; }
+
+  #main { padding: 0 0 0 100px; }
+}
+@media (max-width: 992px) and (min-width: 768px){
+  .navbar #navbar { background: #2A2A2A;}
+  .navbar #navbar>ul { padding: 0; float: left; }
+  .navbar #navbar>ul>li { float: left; }
+  .navbar #navbar a { color: #F1F1F1; display: block; height: 50px; line-height: 50px; padding: 0 15px; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
+  .navbar #navbar a:hover { position: relative; bottom: -1px; }
+  .navbar #navbar a#logo2 { background: #D98218;}
+  .navbar #navbar a#logo2:hover { position: static; }
+}
+.navbar #navbar a:hover { text-decoration: none; background-color: #111; }
+.navbar #navbar  a span { color: #D98218; display: block; font-size: 26px; margin-bottom: 10px; }
+
+#main #site_wrapper { background-color: #111; width: 200px; position: absolute; top: 50px; left: 100px; bottom: 0; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+
+.menu > li:nth-child(1):before {
+  content: "";
+  padding: 0;
+}

@@ -1,0 +1,15 @@
+{
+    "name": "jeremy.github.com",
+    "description": "jeremy's blog",
+    "version": "0.0.0",
+    "homepage": "",
+    "license": "ISC",
+    "dependencies": {
+        "angular": "*",
+        "angular-route": "*",
+        "angular-animate": "*",
+        "angular-loader": "*",
+        "angular-mocks": "*",
+        "bootstrap": "*"
+    }
+}
